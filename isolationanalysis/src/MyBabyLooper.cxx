@@ -332,6 +332,9 @@ void doIsoStudy()
     else if (lepton.isFromX & (1<<5)) { nmisid ++; fillHistograms("MisID" , lepton); }
   }
 
+  PlotUtil::plot1D("nprompt", nprompt, mytree.evt_scale1fb(), ana_data.hist_db, "", 5, 0, 5);
+  PlotUtil::plot1D("nmisid" , nmisid , mytree.evt_scale1fb(), ana_data.hist_db, "", 5, 0, 5);
+
 }
 
 //______________________________________________________________________________________
