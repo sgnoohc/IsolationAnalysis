@@ -44,51 +44,32 @@ void afterLoop();
 void initMyBaby();
 void loadMyBabyEvent();
 void processMyBabyEvent();
-void getObjects();
 
 //-------------------------------------------------------------
 
-void doSkimming();
-
-void selectObjectsForSkimming();
-bool isNonIsoGoodLepton(ObjUtil::Lepton& lepton);
-bool isNonIsoGoodMuon(ObjUtil::Lepton& lepton);
-bool isNonIsoGoodElectron(ObjUtil::Lepton& lepton);
-
-bool passSkimming();
-
-//-------------------------------------------------------------
-
-void doSMWWWSSmmAnalysis();
-void doSMWWWSSemAnalysis();
-void doSMWWWSSeeAnalysis();
-
-void selectObjects();
 bool isGoodLepton(ObjUtil::Lepton& lepton);
 bool isGoodElectron(ObjUtil::Lepton& lepton);
 bool isGoodMuon(ObjUtil::Lepton& lepton);
+bool isNonIsoGoodLepton(ObjUtil::Lepton& lepton);
+bool isNonIsoGoodMuon(ObjUtil::Lepton& lepton);
+bool isNonIsoGoodElectron(ObjUtil::Lepton& lepton);
 bool isIsoElectron(ObjUtil::Lepton& lepton);
 bool isIsoMuon(ObjUtil::Lepton& lepton);
-
+bool isNonIsoNoIPGoodLepton(ObjUtil::Lepton& lepton);
+bool isNonIsoNoIPGoodMuon(ObjUtil::Lepton& lepton);
+bool isNonIsoNoIPGoodElectron(ObjUtil::Lepton& lepton);
 bool isVetoLepton(ObjUtil::Lepton& lepton);
 bool isVetoMuon(ObjUtil::Lepton& lepton);
 bool isVetoElectron(ObjUtil::Lepton& lepton);
-
 bool isGoodJet(ObjUtil::Jet& jet);
 bool isGoodMediumBJet(ObjUtil::Jet& jet);
 bool isGoodLooseBJet(ObjUtil::Jet& jet);
-
 void overlapRemoval();
 
 
 //-------------------------------------------------------------
 
 void createIsoTree();
-
-bool isNonIsoNoIPGoodLepton(ObjUtil::Lepton& lepton);
-bool isNonIsoNoIPGoodMuon(ObjUtil::Lepton& lepton);
-bool isNonIsoNoIPGoodElectron(ObjUtil::Lepton& lepton);
-
 void doFillIsoTree();
 
 #endif
