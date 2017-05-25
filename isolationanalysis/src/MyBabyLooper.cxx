@@ -316,22 +316,20 @@ void doIsoStudy()
 
   HistUtil::fillCutflow(__FUNCTION__, ana_data, 0);
 
+  int nprompt = 0;
+  int nmisid = 0;
+
   for (auto& lepton: leptons)
   {
     if (!( lepton.p4.Pt() > 20 ))
       continue;
-    if (!( fabs(lepton.p4.Eta()) >= 2.4 ))
+    if (!( fabs(lepton.p4.Eta()) < 2.4 ))
       continue;
-    if (lepton.isFromX & (1<<0))
-      fillHistograms("Prompt", lepton);
-    else if (lepton.isFromX & (1<<2))
-      fillHistograms("MisID", lepton);
-    else if (lepton.isFromX & (1<<3))
-      fillHistograms("MisID", lepton);
-    else if (lepton.isFromX & (1<<4))
-      fillHistograms("MisID", lepton);
-    else if (lepton.isFromX & (1<<5))
-      fillHistograms("MisID", lepton);
+    if      (lepton.isFromX & (1<<0)) { nprompt++; fillHistograms("Prompt", lepton); }
+    else if (lepton.isFromX & (1<<2)) { nmisid ++; fillHistograms("MisID" , lepton); }
+    else if (lepton.isFromX & (1<<3)) { nmisid ++; fillHistograms("MisID" , lepton); }
+    else if (lepton.isFromX & (1<<4)) { nmisid ++; fillHistograms("MisID" , lepton); }
+    else if (lepton.isFromX & (1<<5)) { nmisid ++; fillHistograms("MisID" , lepton); }
   }
 
 }
