@@ -306,6 +306,9 @@ void doIsoStudy()
   Analyses::selectObjs<ObjUtil::Lepton>(leptons, isNonIsoGoodMuon);
   Analyses::selectObjs<ObjUtil::Jet>   (jets   , isGoodJet);
 
+  /// If no lepton candidates found, skip
+  if (leptons.size() == 0) return;
+
   PlotUtil::plot1D("beforeORnlep", leptons.size(), mytree.evt_scale1fb(), ana_data.hist_db, "", 5, 0, 5);
   PlotUtil::plot1D("beforeORnjet", jets.size()   , mytree.evt_scale1fb(), ana_data.hist_db, "", 5, 0, 5);
 
