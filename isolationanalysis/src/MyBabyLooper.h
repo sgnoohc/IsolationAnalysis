@@ -64,13 +64,11 @@ bool isVetoElectron(ObjUtil::Lepton& lepton);
 bool isGoodJet(ObjUtil::Jet& jet);
 bool isGoodMediumBJet(ObjUtil::Jet& jet);
 bool isGoodLooseBJet(ObjUtil::Jet& jet);
-void overlapRemoval();
-
 
 //-------------------------------------------------------------
 
-void createIsoTree();
-void doFillIsoTree();
+void doIsoStudy();
+void fillHistograms(string prefix, ObjUtil::Lepton& lepton);
 
 #endif
 //eof

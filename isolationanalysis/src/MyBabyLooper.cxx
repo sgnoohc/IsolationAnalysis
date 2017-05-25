@@ -48,9 +48,6 @@ void beforeLoop(TChain* chain, TString output_name_, int nevents)
   //output_name = output_name_;
   LoopUtil::output_name = output_name_;
 
-  // Create a small ntuple for isolation study
-  createIsoTree();
-
 }
 
 
@@ -101,22 +98,15 @@ void loadMyBabyEvent()
 void processMyBabyEvent()
 {
 
-  doFillIsoTree();
+  doIsoStudy();
 
 }
 
 //______________________________________________________________________________________
 void afterLoop()
 {
-  // Save iso trees
-  isofilegood->cd();
-  isotreegood->Write();
-  isofilegood->Write();
-  isofilegood->Close();
-  isofilefake->cd();
-  isotreefake->Write();
-  isofilefake->Write();
-  isofilefake->Close();
+  // Save plots
+  PlotUtil::savePlots(ana_data.hist_db, LoopUtil::output_name + "_hist.root");
 
   // Fun exit
   PrintUtil::exit();
@@ -125,16 +115,6 @@ void afterLoop()
 //=====================================================================================
 //=====================================================================================
 //=====================================================================================
-
-//______________________________________________________________________________________
-void selectObjects()
-{
-  Analyses::selectObjs<ObjUtil::Lepton>(ana_data.lepcol["goodlep"] , isGoodLepton);
-  Analyses::selectObjs<ObjUtil::Lepton>(ana_data.lepcol["vetolep"] , isVetoLepton);
-  Analyses::selectObjs<ObjUtil::Jet>   (ana_data.jetcol["goodjet"] , isGoodJet);
-  Analyses::selectObjs<ObjUtil::Jet>   (ana_data.jetcol["medbjet"] , isGoodMediumBJet);
-  Analyses::selectObjs<ObjUtil::Jet>   (ana_data.jetcol["lssbjet"] , isGoodLooseBJet);
-}
 
 //______________________________________________________________________________________
 bool isGoodLepton(ObjUtil::Lepton& lepton)
@@ -310,99 +290,13 @@ bool isGoodLooseBJet(ObjUtil::Jet& jet)
   if (!( Analyses::isLooseBJet(jet) )) return false;
   return true;
 }
-//______________________________________________________________________________________
-void overlapRemoval()
-{
-  Analyses::removeJetsOverlappingLeptons(ana_data.jetcol["goodjet"] , ana_data.lepcol["goodlep"]);
-  Analyses::removeJetsOverlappingLeptons(ana_data.jetcol["medbjet"] , ana_data.lepcol["goodlep"]);
-  Analyses::removeJetsOverlappingLeptons(ana_data.jetcol["lssbjet"] , ana_data.lepcol["goodlep"]);
-}
 
 //=====================================================================================
 //=====================================================================================
 //=====================================================================================
 
 //______________________________________________________________________________________
-void createIsoTree()
-{
-  isofilegood = new TFile((LoopUtil::output_name+"_isotree_sig.root").Data(), "recreate");
-  isotreegood = new TTree("IsoTree", "IsoTree");
-  isofilefake = new TFile((LoopUtil::output_name+"_isotree_bkg.root").Data(), "recreate");
-  isotreefake = new TTree("IsoTree", "IsoTree");
-
-  TreeUtil::createFloatBranch(isotreegood, "sip3d");
-  TreeUtil::createFloatBranch(isotreegood, "ip3d");
-  TreeUtil::createFloatBranch(isotreegood, "ptrel");
-  TreeUtil::createFloatBranch(isotreegood, "ptratio");
-  TreeUtil::createFloatBranch(isotreegood, "relIso03");
-  TreeUtil::createFloatBranch(isotreegood, "relIso03DB");
-  TreeUtil::createFloatBranch(isotreegood, "relIso03EA");
-  TreeUtil::createFloatBranch(isotreegood, "relIso04DB");
-  TreeUtil::createFloatBranch(isotreegood, "relIso04EA");
-  TreeUtil::createFloatBranch(isotreegood, "miniRelIsoDB");
-  TreeUtil::createFloatBranch(isotreegood, "miniRelIsoEA");
-  TreeUtil::createFloatBranch(isotreegood, "relIso005EA");
-  TreeUtil::createFloatBranch(isotreegood, "relIso010EA");
-  TreeUtil::createFloatBranch(isotreegood, "relIso015EA");
-  TreeUtil::createFloatBranch(isotreegood, "relIso020EA");
-  TreeUtil::createFloatBranch(isotreegood, "relIso025EA");
-  TreeUtil::createFloatBranch(isotreegood, "relIso030EA");
-  TreeUtil::createFloatBranch(isotreegood, "relIso035EA");
-  TreeUtil::createFloatBranch(isotreegood, "relIso045EA");
-  TreeUtil::createFloatBranch(isotreegood, "relIso050EA");
-  TreeUtil::createFloatBranch(isotreegood, "absIso03");
-  TreeUtil::createFloatBranch(isotreegood, "absIso03DB");
-  TreeUtil::createFloatBranch(isotreegood, "absIso03EA");
-  TreeUtil::createFloatBranch(isotreegood, "absIso04DB");
-  TreeUtil::createFloatBranch(isotreegood, "absIso04EA");
-  TreeUtil::createFloatBranch(isotreegood, "pt");
-  TreeUtil::createFloatBranch(isotreegood, "eta");
-  TreeUtil::createIntBranch  (isotreegood, "pdgId");
-  TreeUtil::createFloatBranch(isotreegood, "relIso03EAv2");
-  TreeUtil::createFloatBranch(isotreegood, "relIso04EAv2");
-  TreeUtil::createFloatBranch(isotreegood, "miniRelIsoEAv2");
-  TreeUtil::createFloatBranch(isotreegood, "absIso03EAv2");
-  TreeUtil::createFloatBranch(isotreegood, "absIso04EAv2");
-  TreeUtil::createFloatBranch(isotreegood, "evt_wgt");
-
-  TreeUtil::createFloatBranch(isotreefake, "sip3d");
-  TreeUtil::createFloatBranch(isotreefake, "ip3d");
-  TreeUtil::createFloatBranch(isotreefake, "ptrel");
-  TreeUtil::createFloatBranch(isotreefake, "ptratio");
-  TreeUtil::createFloatBranch(isotreefake, "relIso03");
-  TreeUtil::createFloatBranch(isotreefake, "relIso03DB");
-  TreeUtil::createFloatBranch(isotreefake, "relIso03EA");
-  TreeUtil::createFloatBranch(isotreefake, "relIso04DB");
-  TreeUtil::createFloatBranch(isotreefake, "relIso04EA");
-  TreeUtil::createFloatBranch(isotreefake, "miniRelIsoDB");
-  TreeUtil::createFloatBranch(isotreefake, "miniRelIsoEA");
-  TreeUtil::createFloatBranch(isotreefake, "relIso005EA");
-  TreeUtil::createFloatBranch(isotreefake, "relIso010EA");
-  TreeUtil::createFloatBranch(isotreefake, "relIso015EA");
-  TreeUtil::createFloatBranch(isotreefake, "relIso020EA");
-  TreeUtil::createFloatBranch(isotreefake, "relIso025EA");
-  TreeUtil::createFloatBranch(isotreefake, "relIso030EA");
-  TreeUtil::createFloatBranch(isotreefake, "relIso035EA");
-  TreeUtil::createFloatBranch(isotreefake, "relIso045EA");
-  TreeUtil::createFloatBranch(isotreefake, "relIso050EA");
-  TreeUtil::createFloatBranch(isotreefake, "absIso03");
-  TreeUtil::createFloatBranch(isotreefake, "absIso03DB");
-  TreeUtil::createFloatBranch(isotreefake, "absIso03EA");
-  TreeUtil::createFloatBranch(isotreefake, "absIso04DB");
-  TreeUtil::createFloatBranch(isotreefake, "absIso04EA");
-  TreeUtil::createFloatBranch(isotreefake, "pt");
-  TreeUtil::createFloatBranch(isotreefake, "eta");
-  TreeUtil::createIntBranch  (isotreefake, "pdgId");
-  TreeUtil::createFloatBranch(isotreefake, "relIso03EAv2");
-  TreeUtil::createFloatBranch(isotreefake, "relIso04EAv2");
-  TreeUtil::createFloatBranch(isotreefake, "miniRelIsoEAv2");
-  TreeUtil::createFloatBranch(isotreefake, "absIso03EAv2");
-  TreeUtil::createFloatBranch(isotreefake, "absIso04EAv2");
-  TreeUtil::createFloatBranch(isotreefake, "evt_wgt");
-}
-
-//______________________________________________________________________________________
-void doFillIsoTree()
+void doIsoStudy()
 {
   /// Get objects
   ObjUtil::Leptons leptons = getLeptons();
@@ -424,70 +318,68 @@ void doFillIsoTree()
 
   for (auto& lepton: leptons)
   {
-
-    TreeUtil::initTreeData();
-
-    TreeUtil::setFloatBranch("ip3d"           , lepton.ip3d);
-    TreeUtil::setFloatBranch("sip3d"          , lepton.sip3d);
-    TreeUtil::setFloatBranch("ptrel"          , lepton.ptRel);
-    TreeUtil::setFloatBranch("ptratio"        , lepton.ptRatio);
-    TreeUtil::setFloatBranch("relIso03"       , lepton.relIso03);
-    TreeUtil::setFloatBranch("relIso03DB"     , lepton.relIso03DB);
-    TreeUtil::setFloatBranch("relIso03EA"     , lepton.relIso03EA);
-    TreeUtil::setFloatBranch("relIso04DB"     , lepton.relIso04DB);
-    TreeUtil::setFloatBranch("relIso04EA"     , lepton.relIso04EA);
-    TreeUtil::setFloatBranch("miniRelIsoDB"   , lepton.miniRelIsoCMS3_DB);
-    TreeUtil::setFloatBranch("miniRelIsoEA"   , lepton.miniRelIsoCMS3_EA);
-    TreeUtil::setFloatBranch("relIso005EA"    , lepton.relIso005EAstudy);
-    TreeUtil::setFloatBranch("relIso010EA"    , lepton.relIso010EAstudy);
-    TreeUtil::setFloatBranch("relIso015EA"    , lepton.relIso015EAstudy);
-    TreeUtil::setFloatBranch("relIso020EA"    , lepton.relIso020EAstudy);
-    TreeUtil::setFloatBranch("relIso025EA"    , lepton.relIso025EAstudy);
-    TreeUtil::setFloatBranch("relIso030EA"    , lepton.relIso030EAstudy);
-    TreeUtil::setFloatBranch("relIso035EA"    , lepton.relIso035EAstudy);
-    TreeUtil::setFloatBranch("relIso045EA"    , lepton.relIso045EAstudy);
-    TreeUtil::setFloatBranch("relIso050EA"    , lepton.relIso050EAstudy);
-    TreeUtil::setFloatBranch("absIso03"       , lepton.relIso03*lepton.p4.Pt());
-    TreeUtil::setFloatBranch("absIso03DB"     , lepton.relIso03DB*lepton.p4.Pt());
-    TreeUtil::setFloatBranch("absIso03EA"     , lepton.relIso03EA*lepton.p4.Pt());
-    TreeUtil::setFloatBranch("absIso04DB"     , lepton.relIso04DB*lepton.p4.Pt());
-    TreeUtil::setFloatBranch("absIso04EA"     , lepton.relIso04EA*lepton.p4.Pt());
-    TreeUtil::setFloatBranch("pt"             , lepton.p4.Pt());
-    TreeUtil::setFloatBranch("eta"            , lepton.p4.Eta());
-    TreeUtil::setIntBranch  ("pdgId"          , lepton.pdgId);
-    TreeUtil::setFloatBranch("relIso03EAv2"   , lepton.relIso03EAv2);
-    TreeUtil::setFloatBranch("relIso04EAv2"   , lepton.relIso04EAv2);
-    TreeUtil::setFloatBranch("miniRelIsoEAv2" , lepton.miniRelIsoCMS3_EAv2);
-    TreeUtil::setFloatBranch("absIso03EAv2"   , lepton.relIso03EAv2*lepton.p4.Pt());
-    TreeUtil::setFloatBranch("absIso04EAv2"   , lepton.relIso04EAv2*lepton.p4.Pt());
-    TreeUtil::setFloatBranch("evt_wgt"        , mytree.evt_scale1fb());
-
-    if (lepton.p4.Pt() <= 10)
+    if (!( lepton.p4.Pt() > 20 ))
+      continue;
+    if (!( fabs(lepton.p4.Eta()) >= 2.4 ))
       continue;
     if (lepton.isFromX & (1<<0))
-    {
-//	      ObjUtil::Leptons goodleptons;
-//	      goodleptons.push_back(lepton);
-//	      if (jets.size() < 4)
-//	        continue;
-//	      if (VarUtil::MinDR(jets, goodleptons) > 0.4)
-//	        isotreegood->Fill();
-      isotreegood->Fill();
-
-    }
+      fillHistograms("Prompt", lepton);
     else if (lepton.isFromX & (1<<2))
-      isotreefake->Fill();
+      fillHistograms("MisID", lepton);
     else if (lepton.isFromX & (1<<3))
-      isotreefake->Fill();
+      fillHistograms("MisID", lepton);
     else if (lepton.isFromX & (1<<4))
-      isotreefake->Fill();
+      fillHistograms("MisID", lepton);
     else if (lepton.isFromX & (1<<5))
-      isotreefake->Fill();
-
+      fillHistograms("MisID", lepton);
   }
 
 }
 
+//______________________________________________________________________________________
+void fillHistograms(string prefix, ObjUtil::Lepton& lepton)
+{
+  PlotUtil::plot1D(prefix+"_widerange_ip3d"         , lepton.ip3d                        , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.5);
+  PlotUtil::plot1D(prefix+"_widerange_sip3d"        , lepton.sip3d                       , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 50.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso03"     , lepton.relIso03                    , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso03EA"   , lepton.relIso03EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso03DB"   , lepton.relIso03DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso04EA"   , lepton.relIso04EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso04DB"   , lepton.relIso04DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_miniRelIsoEA" , lepton.miniRelIsoCMS3_EA           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_miniRelIsoDB" , lepton.miniRelIsoCMS3_DB           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+
+  PlotUtil::plot1D(prefix+"_widerange_relIso005EA"  , lepton.relIso005EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso010EA"  , lepton.relIso010EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso015EA"  , lepton.relIso015EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso020EA"  , lepton.relIso020EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso025EA"  , lepton.relIso025EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso030EA"  , lepton.relIso030EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso035EA"  , lepton.relIso035EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso045EA"  , lepton.relIso045EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso050EA"  , lepton.relIso050EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+
+  PlotUtil::plot1D(prefix+"_relIso03"               , lepton.relIso03                    , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso03EA"             , lepton.relIso03EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso03EAv2"           , lepton.relIso03EAv2                , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso03DB"             , lepton.relIso03DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso04EA"             , lepton.relIso04EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso04EAv2"           , lepton.relIso04EAv2                , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso04DB"             , lepton.relIso04DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_miniRelIsoEA"           , lepton.miniRelIsoCMS3_EA           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_miniRelIsoEAv2"         , lepton.miniRelIsoCMS3_EAv2         , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_miniRelIsoDB"           , lepton.miniRelIsoCMS3_DB           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_absIso03"               , lepton.relIso03*lepton.p4.Pt()     , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso03EA"             , lepton.relIso03EA*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso03EAv2"           , lepton.relIso03EAv2*lepton.p4.Pt() , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso03DB"             , lepton.relIso03DB*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso04EA"             , lepton.relIso04EA*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso04EAv2"           , lepton.relIso04EAv2*lepton.p4.Pt() , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso04DB"             , lepton.relIso04DB*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_pt"                     , lepton.p4.Pt()                     , mytree.evt_scale1fb() , ana_data.hist_db , "" , 60    , 0. , 60);
+  PlotUtil::plot1D(prefix+"_ip3d"                   , lepton.ip3d                        , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.1);
+  PlotUtil::plot1D(prefix+"_sip3d"                  , lepton.sip3d                       , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
+}
 
 
 //eof
