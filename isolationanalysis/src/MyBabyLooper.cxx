@@ -329,7 +329,7 @@ void doIsoStudy()
 
   for (auto& lepton: leptons)
   {
-    if (!( lepton.p4.Pt() > 20 ))
+    if (!( lepton.p4.Pt() > 25 ))
       continue;
     if (!( fabs(lepton.p4.Eta()) < 2.4 ))
       continue;
