@@ -197,35 +197,37 @@ bool isNonIsoNoIPGoodLepton(ObjUtil::Lepton& lepton)
 //______________________________________________________________________________________
 bool isNonIsoNoIPGoodElectron(ObjUtil::Lepton& lepton)
 {
-                                                                   if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  0);
-  if (!( fabs(lepton.pdgId)               == 11   )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  1);
-  if (!( fabs(lepton.elEtaSC)             <= 2.5  )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  2);
-  if (!( !(lepton.elConvVeto)                     )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  3);
-  if (!( lepton.elNmiss                   <= 0    )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  4);
-  if (!( fabs(lepton.dz)                  <  0.1  )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  5);
-  if (!( fabs(lepton.dxy)                 <  0.05 )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  6);
-  if (!( lepton.tightcharge               == 2    )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  7);
+  int cutflow = 0;
+                                                                   if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( fabs(lepton.pdgId)               == 11   )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( fabs(lepton.elEtaSC)             <= 2.5  )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( !(lepton.elConvVeto)                     )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( lepton.elNmiss                   <= 0    )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( fabs(lepton.dz)                  <  0.1  )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( fabs(lepton.dxy)                 <  0.05 )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( lepton.tightcharge               == 2    )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
   if (!( Analyses::isElectronPOGMVAIDCut(lepton,
           /* barrel */      0.77, 0.52, 0.77,
           /* transition */  0.56, 0.11, 0.56,
-          /* endcap */      0.48,-0.01, 0.48)     )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  8);
-  if (!( Analyses::isTriggerSafenoIso_v1(lepton)  )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  9);
-  if (!( lepton.isFromX & (1<<0)                  ))               if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 10);
-  if ( ( lepton.isFromX & (1<<0)                  ))               if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 11);
+          /* endcap */      0.48,-0.01, 0.48)     )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( Analyses::isTriggerSafenoIso_v1(lepton)  )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( lepton.isFromX & (1<<0)                  ))               if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if ( ( lepton.isFromX & (1<<0)                  ))               if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
   return true;
 }
 
 //______________________________________________________________________________________
 bool isNonIsoNoIPGoodMuon(ObjUtil::Lepton& lepton)
 {
-                                                                if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 0);
-  if (!( abs(lepton.pdgId)          ==   13    )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 1);
-  if (!( fabs(lepton.dz)            <=    0.1  )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 2);
-  if (!( fabs(lepton.dxy)           <=    0.05 )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 3);
-  if (!( lepton.muPOverP            <     0.2  )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 4);
-  if (!( Analyses::isMediumMuonPOG(lepton)     )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 5);
-  if (!( lepton.isFromX & (1<<0)               ))               if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 6);
-  if ( ( lepton.isFromX & (1<<0)               ))               if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 7);
+  int cutflow = 0;
+                                                                if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( abs(lepton.pdgId)          ==   13    )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( fabs(lepton.dz)            <=    0.1  )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( fabs(lepton.dxy)           <=    0.05 )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( lepton.muPOverP            <     0.2  )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( Analyses::isMediumMuonPOG(lepton)     )) return false; if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if (!( lepton.isFromX & (1<<0)               ))               if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
+  if ( ( lepton.isFromX & (1<<0)               ))               if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
   return true;
 }
 
@@ -238,31 +240,33 @@ bool isVetoLepton(ObjUtil::Lepton& lepton)
 //______________________________________________________________________________________
 bool isVetoElectron(ObjUtil::Lepton& lepton)
 {
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  0); if (!( fabs(lepton.pdgId)               == 11   )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  1); if (!( fabs(lepton.elEtaSC)             <= 2.5  )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  2); if (!( !(lepton.elConvVeto)                     )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  3); if (!( lepton.elNmiss                   <= 1    )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  4); if (!( fabs(lepton.dz)                  <  0.1  )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  5); if (!( fabs(lepton.dxy)                 <  0.05 )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  6); if (!( fabs(lepton.p4.Pt())             >  7.   )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  7); if (!( Analyses::isTriggerSafenoIso_v1(lepton)  )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  8); if (!( lepton.isFromX & (1<<0)                  ))
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data,  9); if ( ( lepton.isFromX & (1<<0)                  ))
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 10);
+  int cutflow = 0;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( fabs(lepton.pdgId)               == 11   )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( fabs(lepton.elEtaSC)             <= 2.5  )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( !(lepton.elConvVeto)                     )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( lepton.elNmiss                   <= 1    )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( fabs(lepton.dz)                  <  0.1  )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( fabs(lepton.dxy)                 <  0.05 )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( fabs(lepton.p4.Pt())             >  7.   )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( Analyses::isTriggerSafenoIso_v1(lepton)  )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( lepton.isFromX & (1<<0)                  ))
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if ( ( lepton.isFromX & (1<<0)                  ))
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
   return true;
 }
 
 //______________________________________________________________________________________
 bool isVetoMuon(ObjUtil::Lepton& lepton)
 {
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 0); if (!( abs(lepton.pdgId)          ==   13    )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 1); if (!( fabs(lepton.dz)            <=    0.1  )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 2); if (!( fabs(lepton.dxy)           <=    0.05 )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 3); if (!( fabs(lepton.p4.Pt())       >     5.   )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 4); if (!( Analyses::isLooseMuonPOG(lepton)      )) return false;
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 5); if (!( lepton.isFromX & (1<<0)               ))
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 6); if ( ( lepton.isFromX & (1<<0)               ))
-  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, 7);
+  int cutflow = 0;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( abs(lepton.pdgId)          ==   13    )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( fabs(lepton.dz)            <=    0.1  )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( fabs(lepton.dxy)           <=    0.05 )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( fabs(lepton.p4.Pt())       >     5.   )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( Analyses::isLooseMuonPOG(lepton)      )) return false;
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if (!( lepton.isFromX & (1<<0)               ))
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow); if ( ( lepton.isFromX & (1<<0)               ))
+  if (do_object_cutflow) HistUtil::fillCutflow(__FUNCTION__, ana_data, cutflow);
   return true;
 }
 
@@ -317,7 +321,8 @@ void doIsoStudy()
   PlotUtil::plot1D("nlep", leptons.size(), mytree.evt_scale1fb(), ana_data.hist_db, "", 5, 0, 5);
   PlotUtil::plot1D("njet", jets.size()   , mytree.evt_scale1fb(), ana_data.hist_db, "", 5, 0, 5);
 
-  HistUtil::fillCutflow(__FUNCTION__, ana_data, 0);
+  int counter = 0;
+  HistUtil::fillCutflow(__FUNCTION__, ana_data, counter);
 
   int nprompt = 0;
   int nmisid = 0;
@@ -343,46 +348,46 @@ void doIsoStudy()
 //______________________________________________________________________________________
 void fillHistograms(string prefix, ObjUtil::Lepton& lepton)
 {
-  PlotUtil::plot1D(prefix+"_widerange_ip3d"         , lepton.ip3d                        , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.5);
-  PlotUtil::plot1D(prefix+"_widerange_sip3d"        , lepton.sip3d                       , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 50.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso03"     , lepton.relIso03                    , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso03EA"   , lepton.relIso03EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso03DB"   , lepton.relIso03DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso04EA"   , lepton.relIso04EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso04DB"   , lepton.relIso04DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_miniRelIsoEA" , lepton.miniRelIsoCMS3_EA           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_miniRelIsoDB" , lepton.miniRelIsoCMS3_DB           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_ip3d"         , lepton.ip3d                        , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.5);
+  PlotUtil::plot1D(prefix+"_widerange_sip3d"        , lepton.sip3d                       , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 50.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso03"     , lepton.relIso03                    , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso03EA"   , lepton.relIso03EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso03DB"   , lepton.relIso03DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso04EA"   , lepton.relIso04EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso04DB"   , lepton.relIso04DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_miniRelIsoEA" , lepton.miniRelIsoCMS3_EA           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_miniRelIsoDB" , lepton.miniRelIsoCMS3_DB           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
 
-  PlotUtil::plot1D(prefix+"_widerange_relIso005EA"  , lepton.relIso005EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso010EA"  , lepton.relIso010EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso015EA"  , lepton.relIso015EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso020EA"  , lepton.relIso020EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso025EA"  , lepton.relIso025EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso030EA"  , lepton.relIso030EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso035EA"  , lepton.relIso035EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso045EA"  , lepton.relIso045EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
-  PlotUtil::plot1D(prefix+"_widerange_relIso050EA"  , lepton.relIso050EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 20.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso005EA"  , lepton.relIso005EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso010EA"  , lepton.relIso010EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso015EA"  , lepton.relIso015EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso020EA"  , lepton.relIso020EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso025EA"  , lepton.relIso025EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso030EA"  , lepton.relIso030EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso035EA"  , lepton.relIso035EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso045EA"  , lepton.relIso045EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
+  PlotUtil::plot1D(prefix+"_widerange_relIso050EA"  , lepton.relIso050EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
 
-  PlotUtil::plot1D(prefix+"_relIso03"               , lepton.relIso03                    , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso03EA"             , lepton.relIso03EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso03EAv2"           , lepton.relIso03EAv2                , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso03DB"             , lepton.relIso03DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso04EA"             , lepton.relIso04EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso04EAv2"           , lepton.relIso04EAv2                , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso04DB"             , lepton.relIso04DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_miniRelIsoEA"           , lepton.miniRelIsoCMS3_EA           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_miniRelIsoEAv2"         , lepton.miniRelIsoCMS3_EAv2         , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_miniRelIsoDB"           , lepton.miniRelIsoCMS3_DB           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_absIso03"               , lepton.relIso03*lepton.p4.Pt()     , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
-  PlotUtil::plot1D(prefix+"_absIso03EA"             , lepton.relIso03EA*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
-  PlotUtil::plot1D(prefix+"_absIso03EAv2"           , lepton.relIso03EAv2*lepton.p4.Pt() , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
-  PlotUtil::plot1D(prefix+"_absIso03DB"             , lepton.relIso03DB*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
-  PlotUtil::plot1D(prefix+"_absIso04EA"             , lepton.relIso04EA*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
-  PlotUtil::plot1D(prefix+"_absIso04EAv2"           , lepton.relIso04EAv2*lepton.p4.Pt() , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
-  PlotUtil::plot1D(prefix+"_absIso04DB"             , lepton.relIso04DB*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_relIso03"               , lepton.relIso03                    , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso03EA"             , lepton.relIso03EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso03EAv2"           , lepton.relIso03EAv2                , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso03DB"             , lepton.relIso03DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso04EA"             , lepton.relIso04EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso04EAv2"           , lepton.relIso04EAv2                , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso04DB"             , lepton.relIso04DB                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_miniRelIsoEA"           , lepton.miniRelIsoCMS3_EA           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_miniRelIsoEAv2"         , lepton.miniRelIsoCMS3_EAv2         , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_miniRelIsoDB"           , lepton.miniRelIsoCMS3_DB           , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_absIso03"               , lepton.relIso03*lepton.p4.Pt()     , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso03EA"             , lepton.relIso03EA*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso03EAv2"           , lepton.relIso03EAv2*lepton.p4.Pt() , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso03DB"             , lepton.relIso03DB*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso04EA"             , lepton.relIso04EA*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso04EAv2"           , lepton.relIso04EAv2*lepton.p4.Pt() , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_absIso04DB"             , lepton.relIso04DB*lepton.p4.Pt()   , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 10);
   PlotUtil::plot1D(prefix+"_pt"                     , lepton.p4.Pt()                     , mytree.evt_scale1fb() , ana_data.hist_db , "" , 60    , 0. , 60);
-  PlotUtil::plot1D(prefix+"_ip3d"                   , lepton.ip3d                        , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 0.1);
-  PlotUtil::plot1D(prefix+"_sip3d"                  , lepton.sip3d                       , mytree.evt_scale1fb() , ana_data.hist_db , "" , 20000 , 0. , 10);
+  PlotUtil::plot1D(prefix+"_ip3d"                   , lepton.ip3d                        , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.1);
+  PlotUtil::plot1D(prefix+"_sip3d"                  , lepton.sip3d                       , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 10);
 }
 
 
