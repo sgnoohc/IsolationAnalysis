@@ -333,6 +333,8 @@ void doIsoStudy()
       continue;
     if (!( fabs(lepton.p4.Eta()) < 2.4 ))
       continue;
+    if (!( abs(lepton.pdgId) == 13 ))
+      continue;
     if      (lepton.isFromX & (1<<0)) { nprompt++; fillHistograms("Prompt", lepton); }
     else if (lepton.isFromX & (1<<2)) { nmisid ++; fillHistograms("MisID" , lepton); }
     else if (lepton.isFromX & (1<<3)) { nmisid ++; fillHistograms("MisID" , lepton); }
