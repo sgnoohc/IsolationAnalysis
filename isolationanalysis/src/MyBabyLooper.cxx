@@ -370,6 +370,16 @@ void fillHistograms(string prefix, ObjUtil::Lepton& lepton)
   PlotUtil::plot1D(prefix+"_widerange_relIso045EA"  , lepton.relIso045EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
   PlotUtil::plot1D(prefix+"_widerange_relIso050EA"  , lepton.relIso050EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 12.);
 
+  PlotUtil::plot1D(prefix+"_relIso005EA"            , lepton.relIso005EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso010EA"            , lepton.relIso010EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso015EA"            , lepton.relIso015EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso020EA"            , lepton.relIso020EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso025EA"            , lepton.relIso025EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso030EA"            , lepton.relIso030EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso035EA"            , lepton.relIso035EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso045EA"            , lepton.relIso045EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso050EA"            , lepton.relIso050EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+
   PlotUtil::plot1D(prefix+"_relIso03"               , lepton.relIso03                    , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
   PlotUtil::plot1D(prefix+"_relIso03EA"             , lepton.relIso03EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
   PlotUtil::plot1D(prefix+"_relIso03EAv2"           , lepton.relIso03EAv2                , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
