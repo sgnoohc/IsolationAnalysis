@@ -152,8 +152,8 @@ bool isNonIsoGoodLepton(ObjUtil::Lepton& lepton)
 bool isNonIsoGoodElectron(ObjUtil::Lepton& lepton)
 {
   if (!( isNonIsoNoIPGoodElectron(lepton)         )) return false;
-//	  if (!( fabs(lepton.sip3d)               <  4    )) return false;
-//	  if (!( fabs(lepton.ip3d)                <  0.015)) return false;
+  if (!( fabs(lepton.sip3d)               <  4    )) return false;
+  if (!( fabs(lepton.ip3d)                <  0.015)) return false;
   if (!( fabs(lepton.p4.Eta())            <  2.4  )) return false;
   if (!( fabs(lepton.p4.Pt())             > 10.   )) return false;
   return true;
@@ -163,8 +163,8 @@ bool isNonIsoGoodElectron(ObjUtil::Lepton& lepton)
 bool isNonIsoGoodMuon(ObjUtil::Lepton& lepton)
 {
   if (!( isNonIsoNoIPGoodMuon(lepton)             )) return false;
-//	  if (!( fabs(lepton.sip3d)               <  4    )) return false;
-//	  if (!( fabs(lepton.ip3d)                <  0.015)) return false;
+  if (!( fabs(lepton.sip3d)               <  4    )) return false;
+  if (!( fabs(lepton.ip3d)                <  0.015)) return false;
   if (!( fabs(lepton.p4.Eta())            <  2.4  )) return false;
   if (!( fabs(lepton.p4.Pt())             > 10.   )) return false;
   return true;
