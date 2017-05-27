@@ -1,6 +1,6 @@
 // -*- C++ -*-
 // This is a header file generated with the command:
-// makeCMS3ClassFiles("/home/users/phchang/public_html/analysis/www/samples/general_v0.0.8_isostudy/TTJets_SingleLeptFromTbar_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/output_tree/output_tree_1.root", "MyBaby", "MyBaby", "tas", "mytree")
+// makeCMS3ClassFiles("/hadoop/cms/store/user/phchang/AutoTwopler_babies/general_v0.0.9_isostudy/WWW_4F_TuneCUETP8M1_13TeV-amcatnlo-pythia8_RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/output_tree/output_tree_1.root", "MyBaby", "MyBaby", "tas", "mytree")
 
 #ifndef MyBaby_H
 #define MyBaby_H
