@@ -93,10 +93,32 @@ void MyBaby::Init(TTree *tree) {
   if (lep_relIso030EAstudy_branch) lep_relIso030EAstudy_branch->SetAddress(&lep_relIso030EAstudy_);
   lep_relIso035EAstudy_branch = tree->GetBranch("lep_relIso035EAstudy");
   if (lep_relIso035EAstudy_branch) lep_relIso035EAstudy_branch->SetAddress(&lep_relIso035EAstudy_);
+  lep_relIso040EAstudy_branch = tree->GetBranch("lep_relIso040EAstudy");
+  if (lep_relIso040EAstudy_branch) lep_relIso040EAstudy_branch->SetAddress(&lep_relIso040EAstudy_);
   lep_relIso045EAstudy_branch = tree->GetBranch("lep_relIso045EAstudy");
   if (lep_relIso045EAstudy_branch) lep_relIso045EAstudy_branch->SetAddress(&lep_relIso045EAstudy_);
   lep_relIso050EAstudy_branch = tree->GetBranch("lep_relIso050EAstudy");
   if (lep_relIso050EAstudy_branch) lep_relIso050EAstudy_branch->SetAddress(&lep_relIso050EAstudy_);
+  lep_relIso005EAstudyv2_branch = tree->GetBranch("lep_relIso005EAstudyv2");
+  if (lep_relIso005EAstudyv2_branch) lep_relIso005EAstudyv2_branch->SetAddress(&lep_relIso005EAstudyv2_);
+  lep_relIso010EAstudyv2_branch = tree->GetBranch("lep_relIso010EAstudyv2");
+  if (lep_relIso010EAstudyv2_branch) lep_relIso010EAstudyv2_branch->SetAddress(&lep_relIso010EAstudyv2_);
+  lep_relIso015EAstudyv2_branch = tree->GetBranch("lep_relIso015EAstudyv2");
+  if (lep_relIso015EAstudyv2_branch) lep_relIso015EAstudyv2_branch->SetAddress(&lep_relIso015EAstudyv2_);
+  lep_relIso020EAstudyv2_branch = tree->GetBranch("lep_relIso020EAstudyv2");
+  if (lep_relIso020EAstudyv2_branch) lep_relIso020EAstudyv2_branch->SetAddress(&lep_relIso020EAstudyv2_);
+  lep_relIso025EAstudyv2_branch = tree->GetBranch("lep_relIso025EAstudyv2");
+  if (lep_relIso025EAstudyv2_branch) lep_relIso025EAstudyv2_branch->SetAddress(&lep_relIso025EAstudyv2_);
+  lep_relIso030EAstudyv2_branch = tree->GetBranch("lep_relIso030EAstudyv2");
+  if (lep_relIso030EAstudyv2_branch) lep_relIso030EAstudyv2_branch->SetAddress(&lep_relIso030EAstudyv2_);
+  lep_relIso035EAstudyv2_branch = tree->GetBranch("lep_relIso035EAstudyv2");
+  if (lep_relIso035EAstudyv2_branch) lep_relIso035EAstudyv2_branch->SetAddress(&lep_relIso035EAstudyv2_);
+  lep_relIso040EAstudyv2_branch = tree->GetBranch("lep_relIso040EAstudyv2");
+  if (lep_relIso040EAstudyv2_branch) lep_relIso040EAstudyv2_branch->SetAddress(&lep_relIso040EAstudyv2_);
+  lep_relIso045EAstudyv2_branch = tree->GetBranch("lep_relIso045EAstudyv2");
+  if (lep_relIso045EAstudyv2_branch) lep_relIso045EAstudyv2_branch->SetAddress(&lep_relIso045EAstudyv2_);
+  lep_relIso050EAstudyv2_branch = tree->GetBranch("lep_relIso050EAstudyv2");
+  if (lep_relIso050EAstudyv2_branch) lep_relIso050EAstudyv2_branch->SetAddress(&lep_relIso050EAstudyv2_);
   lep_muPOverP_branch = tree->GetBranch("lep_muPOverP");
   if (lep_muPOverP_branch) lep_muPOverP_branch->SetAddress(&lep_muPOverP_);
   lep_muPidPFMuon_branch = tree->GetBranch("lep_muPidPFMuon");
@@ -215,6 +237,8 @@ void MyBaby::Init(TTree *tree) {
   if (evt_event_branch) evt_event_branch->SetAddress(&evt_event_);
   evt_nEvts_branch = tree->GetBranch("evt_nEvts");
   if (evt_nEvts_branch) evt_nEvts_branch->SetAddress(&evt_nEvts_);
+  evt_nvtx_branch = tree->GetBranch("evt_nvtx");
+  if (evt_nvtx_branch) evt_nvtx_branch->SetAddress(&evt_nvtx_);
   evt_scale1fb_branch = tree->GetBranch("evt_scale1fb");
   if (evt_scale1fb_branch) evt_scale1fb_branch->SetAddress(&evt_scale1fb_);
   gen_ht_branch = tree->GetBranch("gen_ht");
@@ -270,8 +294,19 @@ void MyBaby::GetEntry(unsigned int idx) {
   lep_relIso025EAstudy_isLoaded = false;
   lep_relIso030EAstudy_isLoaded = false;
   lep_relIso035EAstudy_isLoaded = false;
+  lep_relIso040EAstudy_isLoaded = false;
   lep_relIso045EAstudy_isLoaded = false;
   lep_relIso050EAstudy_isLoaded = false;
+  lep_relIso005EAstudyv2_isLoaded = false;
+  lep_relIso010EAstudyv2_isLoaded = false;
+  lep_relIso015EAstudyv2_isLoaded = false;
+  lep_relIso020EAstudyv2_isLoaded = false;
+  lep_relIso025EAstudyv2_isLoaded = false;
+  lep_relIso030EAstudyv2_isLoaded = false;
+  lep_relIso035EAstudyv2_isLoaded = false;
+  lep_relIso040EAstudyv2_isLoaded = false;
+  lep_relIso045EAstudyv2_isLoaded = false;
+  lep_relIso050EAstudyv2_isLoaded = false;
   lep_muPOverP_isLoaded = false;
   lep_muPidPFMuon_isLoaded = false;
   lep_muType_isLoaded = false;
@@ -331,6 +366,7 @@ void MyBaby::GetEntry(unsigned int idx) {
   evt_lumi_isLoaded = false;
   evt_event_isLoaded = false;
   evt_nEvts_isLoaded = false;
+  evt_nvtx_isLoaded = false;
   evt_scale1fb_isLoaded = false;
   gen_ht_isLoaded = false;
 }
@@ -381,8 +417,19 @@ void MyBaby::LoadAllBranches() {
   if (lep_relIso025EAstudy_branch != 0) lep_relIso025EAstudy();
   if (lep_relIso030EAstudy_branch != 0) lep_relIso030EAstudy();
   if (lep_relIso035EAstudy_branch != 0) lep_relIso035EAstudy();
+  if (lep_relIso040EAstudy_branch != 0) lep_relIso040EAstudy();
   if (lep_relIso045EAstudy_branch != 0) lep_relIso045EAstudy();
   if (lep_relIso050EAstudy_branch != 0) lep_relIso050EAstudy();
+  if (lep_relIso005EAstudyv2_branch != 0) lep_relIso005EAstudyv2();
+  if (lep_relIso010EAstudyv2_branch != 0) lep_relIso010EAstudyv2();
+  if (lep_relIso015EAstudyv2_branch != 0) lep_relIso015EAstudyv2();
+  if (lep_relIso020EAstudyv2_branch != 0) lep_relIso020EAstudyv2();
+  if (lep_relIso025EAstudyv2_branch != 0) lep_relIso025EAstudyv2();
+  if (lep_relIso030EAstudyv2_branch != 0) lep_relIso030EAstudyv2();
+  if (lep_relIso035EAstudyv2_branch != 0) lep_relIso035EAstudyv2();
+  if (lep_relIso040EAstudyv2_branch != 0) lep_relIso040EAstudyv2();
+  if (lep_relIso045EAstudyv2_branch != 0) lep_relIso045EAstudyv2();
+  if (lep_relIso050EAstudyv2_branch != 0) lep_relIso050EAstudyv2();
   if (lep_muPOverP_branch != 0) lep_muPOverP();
   if (lep_muPidPFMuon_branch != 0) lep_muPidPFMuon();
   if (lep_muType_branch != 0) lep_muType();
@@ -442,6 +489,7 @@ void MyBaby::LoadAllBranches() {
   if (evt_lumi_branch != 0) evt_lumi();
   if (evt_event_branch != 0) evt_event();
   if (evt_nEvts_branch != 0) evt_nEvts();
+  if (evt_nvtx_branch != 0) evt_nvtx();
   if (evt_scale1fb_branch != 0) evt_scale1fb();
   if (gen_ht_branch != 0) gen_ht();
 }
@@ -1018,6 +1066,19 @@ const vector<float> &MyBaby::lep_relIso035EAstudy() {
   return *lep_relIso035EAstudy_;
 }
 
+const vector<float> &MyBaby::lep_relIso040EAstudy() {
+  if (not lep_relIso040EAstudy_isLoaded) {
+    if (lep_relIso040EAstudy_branch != 0) {
+      lep_relIso040EAstudy_branch->GetEntry(index);
+    } else {
+      printf("branch lep_relIso040EAstudy_branch does not exist!\n");
+      exit(1);
+    }
+    lep_relIso040EAstudy_isLoaded = true;
+  }
+  return *lep_relIso040EAstudy_;
+}
+
 const vector<float> &MyBaby::lep_relIso045EAstudy() {
   if (not lep_relIso045EAstudy_isLoaded) {
     if (lep_relIso045EAstudy_branch != 0) {
@@ -1042,6 +1103,136 @@ const vector<float> &MyBaby::lep_relIso050EAstudy() {
     lep_relIso050EAstudy_isLoaded = true;
   }
   return *lep_relIso050EAstudy_;
+}
+
+const vector<float> &MyBaby::lep_relIso005EAstudyv2() {
+  if (not lep_relIso005EAstudyv2_isLoaded) {
+    if (lep_relIso005EAstudyv2_branch != 0) {
+      lep_relIso005EAstudyv2_branch->GetEntry(index);
+    } else {
+      printf("branch lep_relIso005EAstudyv2_branch does not exist!\n");
+      exit(1);
+    }
+    lep_relIso005EAstudyv2_isLoaded = true;
+  }
+  return *lep_relIso005EAstudyv2_;
+}
+
+const vector<float> &MyBaby::lep_relIso010EAstudyv2() {
+  if (not lep_relIso010EAstudyv2_isLoaded) {
+    if (lep_relIso010EAstudyv2_branch != 0) {
+      lep_relIso010EAstudyv2_branch->GetEntry(index);
+    } else {
+      printf("branch lep_relIso010EAstudyv2_branch does not exist!\n");
+      exit(1);
+    }
+    lep_relIso010EAstudyv2_isLoaded = true;
+  }
+  return *lep_relIso010EAstudyv2_;
+}
+
+const vector<float> &MyBaby::lep_relIso015EAstudyv2() {
+  if (not lep_relIso015EAstudyv2_isLoaded) {
+    if (lep_relIso015EAstudyv2_branch != 0) {
+      lep_relIso015EAstudyv2_branch->GetEntry(index);
+    } else {
+      printf("branch lep_relIso015EAstudyv2_branch does not exist!\n");
+      exit(1);
+    }
+    lep_relIso015EAstudyv2_isLoaded = true;
+  }
+  return *lep_relIso015EAstudyv2_;
+}
+
+const vector<float> &MyBaby::lep_relIso020EAstudyv2() {
+  if (not lep_relIso020EAstudyv2_isLoaded) {
+    if (lep_relIso020EAstudyv2_branch != 0) {
+      lep_relIso020EAstudyv2_branch->GetEntry(index);
+    } else {
+      printf("branch lep_relIso020EAstudyv2_branch does not exist!\n");
+      exit(1);
+    }
+    lep_relIso020EAstudyv2_isLoaded = true;
+  }
+  return *lep_relIso020EAstudyv2_;
+}
+
+const vector<float> &MyBaby::lep_relIso025EAstudyv2() {
+  if (not lep_relIso025EAstudyv2_isLoaded) {
+    if (lep_relIso025EAstudyv2_branch != 0) {
+      lep_relIso025EAstudyv2_branch->GetEntry(index);
+    } else {
+      printf("branch lep_relIso025EAstudyv2_branch does not exist!\n");
+      exit(1);
+    }
+    lep_relIso025EAstudyv2_isLoaded = true;
+  }
+  return *lep_relIso025EAstudyv2_;
+}
+
+const vector<float> &MyBaby::lep_relIso030EAstudyv2() {
+  if (not lep_relIso030EAstudyv2_isLoaded) {
+    if (lep_relIso030EAstudyv2_branch != 0) {
+      lep_relIso030EAstudyv2_branch->GetEntry(index);
+    } else {
+      printf("branch lep_relIso030EAstudyv2_branch does not exist!\n");
+      exit(1);
+    }
+    lep_relIso030EAstudyv2_isLoaded = true;
+  }
+  return *lep_relIso030EAstudyv2_;
+}
+
+const vector<float> &MyBaby::lep_relIso035EAstudyv2() {
+  if (not lep_relIso035EAstudyv2_isLoaded) {
+    if (lep_relIso035EAstudyv2_branch != 0) {
+      lep_relIso035EAstudyv2_branch->GetEntry(index);
+    } else {
+      printf("branch lep_relIso035EAstudyv2_branch does not exist!\n");
+      exit(1);
+    }
+    lep_relIso035EAstudyv2_isLoaded = true;
+  }
+  return *lep_relIso035EAstudyv2_;
+}
+
+const vector<float> &MyBaby::lep_relIso040EAstudyv2() {
+  if (not lep_relIso040EAstudyv2_isLoaded) {
+    if (lep_relIso040EAstudyv2_branch != 0) {
+      lep_relIso040EAstudyv2_branch->GetEntry(index);
+    } else {
+      printf("branch lep_relIso040EAstudyv2_branch does not exist!\n");
+      exit(1);
+    }
+    lep_relIso040EAstudyv2_isLoaded = true;
+  }
+  return *lep_relIso040EAstudyv2_;
+}
+
+const vector<float> &MyBaby::lep_relIso045EAstudyv2() {
+  if (not lep_relIso045EAstudyv2_isLoaded) {
+    if (lep_relIso045EAstudyv2_branch != 0) {
+      lep_relIso045EAstudyv2_branch->GetEntry(index);
+    } else {
+      printf("branch lep_relIso045EAstudyv2_branch does not exist!\n");
+      exit(1);
+    }
+    lep_relIso045EAstudyv2_isLoaded = true;
+  }
+  return *lep_relIso045EAstudyv2_;
+}
+
+const vector<float> &MyBaby::lep_relIso050EAstudyv2() {
+  if (not lep_relIso050EAstudyv2_isLoaded) {
+    if (lep_relIso050EAstudyv2_branch != 0) {
+      lep_relIso050EAstudyv2_branch->GetEntry(index);
+    } else {
+      printf("branch lep_relIso050EAstudyv2_branch does not exist!\n");
+      exit(1);
+    }
+    lep_relIso050EAstudyv2_isLoaded = true;
+  }
+  return *lep_relIso050EAstudyv2_;
 }
 
 const vector<float> &MyBaby::lep_muPOverP() {
@@ -1811,6 +2002,19 @@ const int &MyBaby::evt_nEvts() {
   return evt_nEvts_;
 }
 
+const int &MyBaby::evt_nvtx() {
+  if (not evt_nvtx_isLoaded) {
+    if (evt_nvtx_branch != 0) {
+      evt_nvtx_branch->GetEntry(index);
+    } else {
+      printf("branch evt_nvtx_branch does not exist!\n");
+      exit(1);
+    }
+    evt_nvtx_isLoaded = true;
+  }
+  return evt_nvtx_;
+}
+
 const float &MyBaby::evt_scale1fb() {
   if (not evt_scale1fb_isLoaded) {
     if (evt_scale1fb_branch != 0) {
@@ -1904,8 +2108,19 @@ const vector<float> &lep_relIso020EAstudy() { return mytree.lep_relIso020EAstudy
 const vector<float> &lep_relIso025EAstudy() { return mytree.lep_relIso025EAstudy(); }
 const vector<float> &lep_relIso030EAstudy() { return mytree.lep_relIso030EAstudy(); }
 const vector<float> &lep_relIso035EAstudy() { return mytree.lep_relIso035EAstudy(); }
+const vector<float> &lep_relIso040EAstudy() { return mytree.lep_relIso040EAstudy(); }
 const vector<float> &lep_relIso045EAstudy() { return mytree.lep_relIso045EAstudy(); }
 const vector<float> &lep_relIso050EAstudy() { return mytree.lep_relIso050EAstudy(); }
+const vector<float> &lep_relIso005EAstudyv2() { return mytree.lep_relIso005EAstudyv2(); }
+const vector<float> &lep_relIso010EAstudyv2() { return mytree.lep_relIso010EAstudyv2(); }
+const vector<float> &lep_relIso015EAstudyv2() { return mytree.lep_relIso015EAstudyv2(); }
+const vector<float> &lep_relIso020EAstudyv2() { return mytree.lep_relIso020EAstudyv2(); }
+const vector<float> &lep_relIso025EAstudyv2() { return mytree.lep_relIso025EAstudyv2(); }
+const vector<float> &lep_relIso030EAstudyv2() { return mytree.lep_relIso030EAstudyv2(); }
+const vector<float> &lep_relIso035EAstudyv2() { return mytree.lep_relIso035EAstudyv2(); }
+const vector<float> &lep_relIso040EAstudyv2() { return mytree.lep_relIso040EAstudyv2(); }
+const vector<float> &lep_relIso045EAstudyv2() { return mytree.lep_relIso045EAstudyv2(); }
+const vector<float> &lep_relIso050EAstudyv2() { return mytree.lep_relIso050EAstudyv2(); }
 const vector<float> &lep_muPOverP() { return mytree.lep_muPOverP(); }
 const vector<int> &lep_muPidPFMuon() { return mytree.lep_muPidPFMuon(); }
 const vector<int> &lep_muType() { return mytree.lep_muType(); }
@@ -1965,6 +2180,7 @@ const int &evt_run() { return mytree.evt_run(); }
 const int &evt_lumi() { return mytree.evt_lumi(); }
 const int &evt_event() { return mytree.evt_event(); }
 const int &evt_nEvts() { return mytree.evt_nEvts(); }
+const int &evt_nvtx() { return mytree.evt_nvtx(); }
 const float &evt_scale1fb() { return mytree.evt_scale1fb(); }
 const float &gen_ht() { return mytree.gen_ht(); }
 
