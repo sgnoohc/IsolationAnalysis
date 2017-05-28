@@ -424,6 +424,8 @@ void fillHistograms(string prefix, ObjUtil::Lepton& lepton)
   PlotUtil::plot1D(prefix+"_pt"                     , lepton.p4.Pt()                     , mytree.evt_scale1fb() , ana_data.hist_db , "" , 60    , 0. , 60);
   PlotUtil::plot1D(prefix+"_ip3d"                   , lepton.ip3d                        , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.1);
   PlotUtil::plot1D(prefix+"_sip3d"                  , lepton.sip3d                       , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 10);
+
+  PlotUtil::plot1D(prefix+"_nvtx"                  , mytree.evt_nvtx()                  , mytree.evt_scale1fb() , ana_data.hist_db , "" ,    50 , 0. , 50);
 }
 
 
