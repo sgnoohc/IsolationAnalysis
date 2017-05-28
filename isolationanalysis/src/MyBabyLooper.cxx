@@ -335,16 +335,35 @@ void doIsoStudy()
       continue;
     if (!( abs(lepton.pdgId) == 13 ))
       continue;
-    if      (lepton.isFromX & (1<<0)) { nprompt++; fillHistograms("Prompt", lepton); }
-    else if (lepton.isFromX & (1<<2)) { nmisid ++; fillHistograms("MisID" , lepton); }
-    else if (lepton.isFromX & (1<<3)) { nmisid ++; fillHistograms("MisID" , lepton); }
-    else if (lepton.isFromX & (1<<4)) { nmisid ++; fillHistograms("MisID" , lepton); }
-    else if (lepton.isFromX & (1<<5)) { nmisid ++; fillHistograms("MisID" , lepton); }
+    if      (lepton.isFromX & (1<<0)) { nprompt++; }
+    else if (lepton.isFromX & (1<<2)) { nmisid ++; }
+    else if (lepton.isFromX & (1<<3)) { nmisid ++; }
+    else if (lepton.isFromX & (1<<4)) { nmisid ++; }
+    else if (lepton.isFromX & (1<<5)) { nmisid ++; }
+    doFillHistograms("nvtxAll", lepton);
+    if (mytree.evt_nvtx() < 15)
+      doFillHistograms("nvtxle15", lepton);
+    else if (mytree.evt_nvtx() >= 15 && mytree.evt_nvtx() < 25)
+      doFillHistograms("nvtxgeq15le25", lepton);
+    else if (mytree.evt_nvtx() >= 25 && mytree.evt_nvtx() < 35)
+      doFillHistograms("nvtxgeq25le35", lepton);
+    else if (mytree.evt_nvtx() >= 35)
+      doFillHistograms("nvtxgeq35", lepton);
   }
 
   PlotUtil::plot1D("nprompt", nprompt, mytree.evt_scale1fb(), ana_data.hist_db, "", 5, 0, 5);
   PlotUtil::plot1D("nmisid" , nmisid , mytree.evt_scale1fb(), ana_data.hist_db, "", 5, 0, 5);
 
+}
+
+//______________________________________________________________________________________
+void doFillHistograms(string prefix, ObjUtil::Lepton& lepton)
+{
+  if      (lepton.isFromX & (1<<0)) { fillHistograms(TString::Format("Prompt_%s", prefix.c_str()).Data(), lepton); }
+  else if (lepton.isFromX & (1<<2)) { fillHistograms(TString::Format("MisID_%s" , prefix.c_str()).Data(), lepton); }
+  else if (lepton.isFromX & (1<<3)) { fillHistograms(TString::Format("MisID_%s" , prefix.c_str()).Data(), lepton); }
+  else if (lepton.isFromX & (1<<4)) { fillHistograms(TString::Format("MisID_%s" , prefix.c_str()).Data(), lepton); }
+  else if (lepton.isFromX & (1<<5)) { fillHistograms(TString::Format("MisID_%s" , prefix.c_str()).Data(), lepton); }
 }
 
 //______________________________________________________________________________________

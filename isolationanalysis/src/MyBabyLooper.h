@@ -68,6 +68,7 @@ bool isGoodLooseBJet(ObjUtil::Jet& jet);
 //-------------------------------------------------------------
 
 void doIsoStudy();
+void doFillHistograms(string prefix, ObjUtil::Lepton& lepton);
 void fillHistograms(string prefix, ObjUtil::Lepton& lepton);
 
 #endif
