@@ -412,16 +412,16 @@ void fillHistograms(string prefix, ObjUtil::Lepton& lepton)
   PlotUtil::plot1D(prefix+"_relIso045EA"            , lepton.relIso045EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
   PlotUtil::plot1D(prefix+"_relIso050EA"            , lepton.relIso050EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
 
-  PlotUtil::plot1D(prefix+"_relIso005EAuseVetoCone" , lepton.relIso005EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso010EAuseVetoCone" , lepton.relIso010EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso015EAuseVetoCone" , lepton.relIso015EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso020EAuseVetoCone" , lepton.relIso020EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso025EAuseVetoCone" , lepton.relIso025EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso030EAuseVetoCone" , lepton.relIso030EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso035EAuseVetoCone" , lepton.relIso035EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso040EAuseVetoCone" , lepton.relIso040EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso045EAuseVetoCone" , lepton.relIso045EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
-  PlotUtil::plot1D(prefix+"_relIso050EAuseVetoCone" , lepton.relIso050EAstudy            , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso005EAv2"          , lepton.relIso005EAstudyv2          , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso010EAv2"          , lepton.relIso010EAstudyv2          , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso015EAv2"          , lepton.relIso015EAstudyv2          , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso020EAv2"          , lepton.relIso020EAstudyv2          , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso025EAv2"          , lepton.relIso025EAstudyv2          , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso030EAv2"          , lepton.relIso030EAstudyv2          , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso035EAv2"          , lepton.relIso035EAstudyv2          , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso040EAv2"          , lepton.relIso040EAstudyv2          , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso045EAv2"          , lepton.relIso045EAstudyv2          , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
+  PlotUtil::plot1D(prefix+"_relIso050EAv2"          , lepton.relIso050EAstudyv2          , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
 
   PlotUtil::plot1D(prefix+"_relIso03"               , lepton.relIso03                    , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
   PlotUtil::plot1D(prefix+"_relIso03EA"             , lepton.relIso03EA                  , mytree.evt_scale1fb() , ana_data.hist_db , "" , 10000 , 0. , 0.25);
