@@ -6,7 +6,6 @@ eval `scramv1 runtime -sh`
 cd -
 
 source unset_ditto
-source ~/ditto/bin/thisditto.sh
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source setup_ditto $DIR
 #source ditto_include_core ~/cmstas/core
